@@ -210,6 +210,24 @@ def most_points_scored
   name
 end
 
+def winning_team 
+  home_scores = []
+  away_scores = [] 
+  team = ""
+  game_hash[:home][:players].each do |player|
+    home_scores.push(player[:points])
+  end
+  game_hash[:away][:players].each do |player|
+    away_scores.push(player[:points])
+  end
+  home_total = home_scores.reduce(0){|sum, n| sum + n }
+  away_total = away_scores.reduce(0){|sum, n| sum + n }
+  if home_total > away_total
+    game_hash[:home][:team_name]
+  else
+    game_hash[:away][:team_name]
+  end
+end
 
 
 
